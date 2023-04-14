@@ -1,7 +1,17 @@
-export default function Home() {
+import { Container, Main, Title } from "@/components/SharedStyles";
+import List from "@/components/events/List";
+
+const Home = () => {
   return (
     <>
-      <main>hello world</main>
+      <Main>
+        <Title>Événements</Title>
+        <Container>
+          <List />
+        </Container>
+      </Main>
     </>
   );
-}
+};
+
+export default Home;
