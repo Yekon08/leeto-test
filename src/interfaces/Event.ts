@@ -19,3 +19,18 @@ export interface EventItem {
   remainingTickets: number;
   state: string;
 }
+
+export interface BookingUser {
+  id: number;
+  user: {
+    id: number;
+    firstName: string;
+    lastName: string;
+    color: string;
+    avatar: {
+      url: string;
+    };
+  };
+  numberOfTickets: number;
+  userId: number;
+}

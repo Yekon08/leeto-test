@@ -6,7 +6,7 @@ import { ListContainer } from "./styles";
 
 const List = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [events, setEvents] = useState<EventItem[] | []>([]);
+  const [events, setEvents] = useState<EventItem[]>([]);
 
   useEffect(() => {
     axios.get("http://localhost:3001/events").then((res) => {

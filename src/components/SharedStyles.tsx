@@ -18,7 +18,14 @@ const Container = styled.div`
   height: 100%;
   background: #fafafb;
   border-radius: 12px;
-  padding: 24px;
+  /* padding: 24px; */
 `;
 
-export { Main, Title, Container };
+const SectionTitle = styled.p`
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
+  color: #8c8c8c;
+`;
+
+export { Main, Title, Container, SectionTitle };
