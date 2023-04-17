@@ -15,3 +15,7 @@ export interface ActiveProps {
 export interface SwitchBtnProps {
   active?: boolean;
 }
+
+export interface Containerprops {
+  padding?: boolean;
+}

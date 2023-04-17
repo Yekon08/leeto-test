@@ -1,3 +1,4 @@
+import { Containerprops } from "@/interfaces/Styles";
 import styled from "styled-components";
 
 const Main = styled.main`
@@ -13,12 +14,13 @@ const Title = styled.h1`
   margin-bottom: 12px;
 `;
 
-const Container = styled.div`
+const Container = styled.div<Containerprops>`
   width: 100%;
   height: 100%;
   background: #fafafb;
   border-radius: 12px;
-  /* padding: 24px; */
+
+  ${(props) => props.padding && "padding: 16px 32px"}
 `;
 
 const SectionTitle = styled.p`
@@ -26,6 +28,7 @@ const SectionTitle = styled.p`
   font-size: 14px;
   line-height: 22px;
   color: #8c8c8c;
+  text-align: center;
 `;
 
 export { Main, Title, Container, SectionTitle };

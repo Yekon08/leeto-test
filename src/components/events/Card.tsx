@@ -76,7 +76,7 @@ const Card = ({ data, active }: Props) => {
 
   return (
     <LinkContainer active={active}>
-      <Link href="#" passHref legacyBehavior>
+      <Link href={`/${data.id}`} passHref legacyBehavior>
         <CardContainer active={active}>
           <LeftContainer>
             <ImgContainer>
