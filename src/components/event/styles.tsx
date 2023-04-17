@@ -13,13 +13,17 @@ const ReturnLink = styled(Link)`
   }
 `;
 
+const ContainerFlex = styled.div`
+  display: flex;
+  margin-top: 24px;
+`;
+
 const ContentContainer = styled.div`
   width: 66.66%;
   height: auto;
   background: #ffffff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.03);
   border-radius: 12px;
-  margin-top: 24px;
   padding: 16px 24px;
 `;
 
@@ -64,6 +68,7 @@ const InformationsContainer = styled.div`
 const DescContainer = styled.div`
   margin-left: 16px;
   margin-top: 16px;
+  flex: 1;
 
   & h1 {
     font-weight: 600;
@@ -73,7 +78,23 @@ const DescContainer = styled.div`
     margin-bottom: 16px;
   }
 
+  & h4 {
+    font-weight: 600;
+    font-size: 14px;
+    color: #8c8c8c;
+    margin-bottom: 8px;
+  }
+
+  & span {
+    font-size: 16px;
+    color: #079cee;
+  }
+
   & p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 30px;
+    color: #8c8c8c;
   }
 `;
 
@@ -88,6 +109,20 @@ const HoursContainer = styled.div`
   margin-bottom: 16px;
 `;
 
+const FlexContainer = styled.div`
+  display: flex;
+  gap: 24px;
+  margin-bottom: 16px;
+`;
+
+const PriceContainer = styled.div`
+  width: 100%;
+  height: auto;
+  background-color: red;
+  margin-left: 18px;
+  flex: 1;
+`;
+
 export {
   ReturnLink,
   ContentContainer,
@@ -96,4 +131,7 @@ export {
   DescContainer,
   InformationsContainer,
   HoursContainer,
+  FlexContainer,
+  PriceContainer,
+  ContainerFlex,
 };
