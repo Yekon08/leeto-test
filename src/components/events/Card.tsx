@@ -14,6 +14,7 @@ import {
   PriceContainer,
   LeftContainer,
   InformationsContainer,
+  LinkContainer,
 } from "./styles";
 import { useEffect, useState } from "react";
 import { SectionTitle } from "../SharedStyles";
@@ -21,9 +22,10 @@ import Link from "next/link";
 
 interface Props {
   data: EventItem;
+  active: "past" | "now";
 }
 
-const Card = ({ data }: Props) => {
+const Card = ({ data, active }: Props) => {
   const [bookings, setBookings] = useState<BookingUser[]>([]);
   const startDate = new Date(data.startAt);
   const endDate = new Date(data.endAt);
@@ -38,6 +40,7 @@ const Card = ({ data }: Props) => {
   )}`;
 
   useEffect(() => {
+    //Todo: handle bookings id
     axios.get("http://localhost:3001/bookings").then((res) => {
       setBookings(res.data);
     });
@@ -72,36 +75,43 @@ const Card = ({ data }: Props) => {
   };
 
   return (
-    <Link href="#" passHref legacyBehavior>
-      <CardContainer>
-        <LeftContainer>
-          <ImgContainer>
-            <Image src={data.image.url} alt="card presentation image" fill />
-          </ImgContainer>
-          <DescContainer>
-            <h3>{data.title}</h3>
-            <p>{date}</p>
-          </DescContainer>
-        </LeftContainer>
+    <LinkContainer active={active}>
+      <Link href="#" passHref legacyBehavior>
+        <CardContainer active={active}>
+          <LeftContainer>
+            <ImgContainer>
+              <Image src={data.image.url} alt="card presentation image" fill />
+            </ImgContainer>
+            <DescContainer>
+              <h3>{data.title}</h3>
+              <p>{date}</p>
+            </DescContainer>
+          </LeftContainer>
 
-        <InformationsContainer>
-          <BookingContainer>
-            <SectionTitle>Participants</SectionTitle>
-            {handleBookings()}
-          </BookingContainer>
-          <AvailabilityContainer>
-            <SectionTitle>Places restantes</SectionTitle>
-            <AvailabilityNumber full={data.remainingTickets > 0 && true}>
-              {data.remainingTickets === 0 ? "Complet" : data.remainingTickets}
-            </AvailabilityNumber>
-          </AvailabilityContainer>
-        </InformationsContainer>
+          <InformationsContainer>
+            <BookingContainer>
+              <SectionTitle>Participants</SectionTitle>
+              {handleBookings()}
+            </BookingContainer>
+            <AvailabilityContainer>
+              <SectionTitle>Places restantes</SectionTitle>
+              <AvailabilityNumber
+                active={active}
+                full={data.remainingTickets > 0 && true}
+              >
+                {data.remainingTickets === 0
+                  ? "Complet"
+                  : data.remainingTickets}
+              </AvailabilityNumber>
+            </AvailabilityContainer>
+          </InformationsContainer>
 
-        <PriceContainer>
-          {data.price === "0.0" ? "Gratuit" : data.price}
-        </PriceContainer>
-      </CardContainer>
-    </Link>
+          <PriceContainer active={active}>
+            {data.price === "0.0" ? "Gratuit" : data.price}
+          </PriceContainer>
+        </CardContainer>
+      </Link>
+    </LinkContainer>
   );
 };
 

@@ -3,11 +3,14 @@ import axios from "axios";
 import { EventItem } from "@/interfaces/Event";
 import Card from "./Card";
 import { ListContainer } from "./styles";
+import SwitchList from "./SwitchList";
 
 const List = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [events, setEvents] = useState<EventItem[]>([]);
+  const [active, setActive] = useState<"now" | "past">("now");
 
+  //TODO: Handle call for past events
   useEffect(() => {
     axios.get("http://localhost:3001/events").then((res) => {
       setEvents(res.data);
@@ -18,14 +21,16 @@ const List = () => {
   if (isLoading) return <p>Chargement ...</p>;
   if (!events) return <p>Aucun évènements...</p>;
 
-  console.log("data: ", events);
-
   return (
-    <ListContainer>
-      {events.map((event: EventItem) => (
-        <Card key={event.id} data={event} />
-      ))}
-    </ListContainer>
+    <>
+      <ListContainer>
+        <SwitchList active={active} setActive={setActive} />
+
+        {events.map((event: EventItem) => (
+          <Card key={event.id} data={event} active={active} />
+        ))}
+      </ListContainer>
+    </>
   );
 };
 

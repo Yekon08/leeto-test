@@ -1,4 +1,9 @@
-import { AvailabilityNumber, Booking } from "@/interfaces/Styles";
+import {
+  ActiveProps,
+  AvailabilityNumber,
+  Booking,
+  SwitchBtnProps,
+} from "@/interfaces/Styles";
 import styled from "styled-components";
 
 const ListContainer = styled.div`
@@ -10,7 +15,13 @@ const ListContainer = styled.div`
   padding: 24px 128px 54px 128px;
 `;
 
-const CardContainer = styled.a`
+const LinkContainer = styled.div<ActiveProps>`
+  width: 100%;
+  height: auto;
+  cursor: ${(props) => (props.active === "past" ? "not-allowed" : "pointer")};
+`;
+
+const CardContainer = styled.a<ActiveProps>`
   width: 100%;
   height: 128px;
   background: #ffffff;
@@ -20,6 +31,7 @@ const CardContainer = styled.a`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  pointer-events: ${(props) => (props.active === "past" ? "none" : "auto")};
 `;
 
 const LeftContainer = styled.div`
@@ -105,17 +117,23 @@ const AvailabilityContainer = styled.div`
 const AvailabilityNumber = styled.p<AvailabilityNumber>`
   font-size: 16px;
   text-align: center;
-  color: ${(props) => (props.full ? "#079CEE" : "#F5222D")};
+  color: ${(props) =>
+    props.active === "past" ? "#BFBFBF" : props.full ? "#079CEE" : "#F5222D"};
+  transition: all 0.3s ease-in-out;
 `;
 
-const PriceContainer = styled.div`
+const PriceContainer = styled.div<ActiveProps>`
   width: 151px;
   height: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   position: relative;
-  background: url("/roundedBg.svg") no-repeat;
+  ${(props) =>
+    props.active === "past"
+      ? `background: url("/roundedBgDisabled.svg");`
+      : `background: url("/roundedBg.svg ");`}
+  background-repeat: no-repeat;
   background-size: 100% 100%;
   padding-right: 24px;
   font-weight: 600;
@@ -123,7 +141,29 @@ const PriceContainer = styled.div`
   line-height: 28px;
   text-align: right;
   color: #5b8c00;
+  color: ${(props) => (props.active === "past" ? "#BFBFBF" : "#5b8c00")};
   border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+`;
+
+const SwitchContainer = styled.div`
+  background: #ffffff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.03);
+  border-radius: 8px;
+  padding: 4px;
+  align-self: baseline;
+`;
+
+const SwitchBtn = styled.button<SwitchBtnProps>`
+  border: none;
+  background: #ebf7ff;
+  border-radius: 4px;
+  padding: 4px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  background: ${(props) => (props.active ? "#ebf7ff" : "transparent")};
+  color: ${(props) => (props.active ? "#079CEE" : "#8295A9")};
+  transition: all 0.3s ease-in-out;
 `;
 
 export {
@@ -139,4 +179,7 @@ export {
   AvailabilityContainer,
   AvailabilityNumber,
   PriceContainer,
+  SwitchContainer,
+  SwitchBtn,
+  LinkContainer,
 };
