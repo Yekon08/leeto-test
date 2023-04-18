@@ -150,17 +150,26 @@ const Price = ({ data, bookings, handleGetBookings }: Props) => {
           />
         </div>
         {!bookingFind && (
-          <button onClick={handleAddReservation}>Ajouter ma réservation</button>
+          <ButtonPrice padding onClick={handleAddReservation}>
+            Ajouter ma réservation
+          </ButtonPrice>
         )}
         {bookingFind && (
-          <button onClick={() => handleDelete(bookingFind.id)}>
-            supprimer ma réservation
-          </button>
-        )}
-        {bookingFind && (
-          <button onClick={() => handlePatch(bookingFind.id, ticketNumber)}>
+          <ButtonPrice
+            padding
+            onClick={() => handlePatch(bookingFind.id, ticketNumber)}
+          >
             modifier ma réservation
-          </button>
+          </ButtonPrice>
+        )}
+        {bookingFind && (
+          <ButtonPrice
+            modify
+            padding
+            onClick={() => handleDelete(bookingFind.id)}
+          >
+            supprimer ma réservation
+          </ButtonPrice>
         )}
       </ReactModal>
     </>
