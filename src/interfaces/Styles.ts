@@ -19,3 +19,7 @@ export interface SwitchBtnProps {
 export interface Containerprops {
   padding?: boolean;
 }
+
+export interface ButtonPriceProps {
+  modify?: boolean;
+}

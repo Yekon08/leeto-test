@@ -1,5 +1,6 @@
 import { BookingUser, EventItem } from "@/interfaces/Event";
 import {
+  ButtonPrice,
   LegalContainer,
   ModalContainer,
   PriceContainer,
@@ -31,7 +32,7 @@ const Price = ({ data, bookings, handleGetBookings }: Props) => {
 
   // ADD user doesnt work
   const bookingFind = bookings.find(
-    (booking) => booking.userId === 9
+    (booking) => booking.userId === 1
     // (booking) => booking.userId === currentUser.id
   );
 
@@ -110,7 +111,12 @@ const Price = ({ data, bookings, handleGetBookings }: Props) => {
               ? `🎉 J’y vais ! (${bookingFind.numberOfTickets} place réservée)`
               : handlePriceText}
           </span>
-          <button onClick={() => setIsOpen(true)}>Réserver</button>
+          <ButtonPrice
+            modify={bookingFind && true}
+            onClick={() => setIsOpen(true)}
+          >
+            {bookingFind ? "Modifier ma réservation" : "Réserver"}
+          </ButtonPrice>
         </ReservationContainer>
 
         <LegalContainer>

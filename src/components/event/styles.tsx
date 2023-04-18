@@ -1,3 +1,4 @@
+import { ButtonPriceProps } from "@/interfaces/Styles";
 import Link from "next/link";
 import styled from "styled-components";
 
@@ -157,18 +158,23 @@ const ReservationContainer = styled.div`
     color: #567f0a;
     margin-bottom: 16px;
   }
+`;
 
-  & button {
-    width: 100%;
-    background: #567f0a;
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.08);
-    border-radius: 8px;
-    border: none;
-    display: block;
-    padding: 8px 0;
-    color: #ffffff;
-    font-size: 16px;
-  }
+const ButtonPrice = styled.button<ButtonPriceProps>`
+  width: 100%;
+  background: ${(props) => (props.modify ? "transparent" : "#567f0a")};
+  border-radius: 8px;
+  border: none;
+  display: block;
+  padding: 8px 0;
+  color: #ffffff;
+  color: ${(props) => (props.modify ? "#F5222D" : "white")};
+  font-size: 16px;
+
+  ${(props) =>
+    props.modify
+      ? "border: 1px solid #F5222D"
+      : "box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.08)"}
 `;
 
 const LegalContainer = styled.div`
@@ -286,4 +292,5 @@ export {
   BookingNames,
   BookingContainer,
   ModalContainer,
+  ButtonPrice,
 };
