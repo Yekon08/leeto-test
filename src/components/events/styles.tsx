@@ -14,6 +14,10 @@ const ListContainer = styled.div`
   flex-direction: column;
   gap: 16px;
   padding: 24px 128px 54px 128px;
+
+  @media (max-width: 768px) {
+    padding: 16px 24px 24px 24px;
+  }
 `;
 
 const LinkContainer = styled.div<ActiveProps>`
@@ -33,11 +37,21 @@ const CardContainer = styled.a<ActiveProps>`
   align-items: center;
   justify-content: space-between;
   pointer-events: ${(props) => (props.active === "past" ? "none" : "auto")};
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    height: auto;
+  }
 `;
 
 const LeftContainer = styled.div`
   display: flex;
   align-items: center;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    flex-direction: column;
+  }
 `;
 
 const ImgContainer = styled.div`
@@ -48,6 +62,11 @@ const ImgContainer = styled.div`
 
   & img {
     border-radius: 8px;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-right: 0;
   }
 `;
 
@@ -64,6 +83,11 @@ const DescContainer = styled.div`
   & p {
     font-weight: 600;
     color: #079cee;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin: 16px 0;
   }
 `;
 
@@ -92,6 +116,10 @@ const BookingItem = styled(BookingItemShared)<Booking>`
 
 const InformationsContainer = styled.div`
   display: flex;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const AvailabilityContainer = styled.div`
@@ -101,6 +129,10 @@ const AvailabilityContainer = styled.div`
   align-items: center;
   padding-bottom: 12px;
   margin-left: 60px;
+
+  @media (max-width: 768px) {
+    align-items: baseline;
+  }
 `;
 
 const AvailabilityNumber = styled.p<AvailabilityNumber>`
@@ -109,6 +141,10 @@ const AvailabilityNumber = styled.p<AvailabilityNumber>`
   color: ${(props) =>
     props.active === "past" ? "#BFBFBF" : props.full ? "#079CEE" : "#F5222D"};
   transition: all 0.3s ease-in-out;
+
+  @media (max-width: 768px) {
+    text-align: left;
+  }
 `;
 
 const PriceContainer = styled.div<ActiveProps>`
@@ -129,10 +165,18 @@ const PriceContainer = styled.div<ActiveProps>`
   font-size: 20px;
   line-height: 28px;
   text-align: right;
-  color: #5b8c00;
   color: ${(props) => (props.active === "past" ? "#BFBFBF" : "#5b8c00")};
   border-radius: 8px;
   transition: all 0.3s ease-in-out;
+
+  @media (max-width: 768px) {
+    padding: 16px 0;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 16px;
+    background: ${(props) => (props.active === "past" ? "#FAFAFA" : "#fcffe6")};
+  }
 `;
 
 const SwitchContainer = styled.div`
@@ -141,6 +185,11 @@ const SwitchContainer = styled.div`
   border-radius: 8px;
   padding: 4px;
   align-self: baseline;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    display: flex;
+  }
 `;
 
 const SwitchBtn = styled.button<SwitchBtnProps>`
@@ -153,6 +202,9 @@ const SwitchBtn = styled.button<SwitchBtnProps>`
   background: ${(props) => (props.active ? "#ebf7ff" : "transparent")};
   color: ${(props) => (props.active ? "#079CEE" : "#8295A9")};
   transition: all 0.3s ease-in-out;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export {

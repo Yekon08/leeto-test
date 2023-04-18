@@ -32,7 +32,7 @@ const Price = ({ data, bookings, handleGetBookings }: Props) => {
 
   // ADD user doesnt work
   const bookingFind = bookings.find(
-    (booking) => booking.userId === 1
+    (booking) => booking.userId === 2
     // (booking) => booking.userId === currentUser.id
   );
 

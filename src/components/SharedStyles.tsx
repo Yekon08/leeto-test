@@ -5,6 +5,10 @@ const Main = styled.main`
   max-width: 1440px;
   margin: 0 auto;
   padding: 16px 24px;
+
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 `;
 
 const Title = styled.h1`
@@ -12,6 +16,11 @@ const Title = styled.h1`
   font-weight: 600;
   font-size: 30px;
   margin-bottom: 12px;
+
+  @media (max-width: 768px) {
+    margin-left: 24px;
+    margin-top: 16px;
+  }
 `;
 
 const Container = styled.div<Containerprops>`
@@ -21,6 +30,10 @@ const Container = styled.div<Containerprops>`
   border-radius: 12px;
 
   ${(props) => props.padding && "padding: 16px 32px"}
+
+  @media (max-width: 768px) {
+    border-radius: 0;
+  }
 `;
 
 const SectionTitle = styled.p`
@@ -29,6 +42,10 @@ const SectionTitle = styled.p`
   line-height: 22px;
   color: #8c8c8c;
   text-align: center;
+
+  @media (max-width: 768px) {
+    text-align: left;
+  }
 `;
 
 const BookingItemShared = styled.div<Booking>`

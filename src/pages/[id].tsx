@@ -51,9 +51,6 @@ const Event = () => {
 
   if (isLoading) return <p>Chargement ...</p>;
 
-  console.log("data: ", data);
-  console.log("bookings: ", bookings);
-
   return (
     <Main>
       <Title>Événements</Title>
