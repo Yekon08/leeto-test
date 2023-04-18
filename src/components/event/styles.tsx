@@ -194,6 +194,12 @@ const ReservationContainer = styled.div`
     margin-bottom: 16px;
   }
 
+  @media (max-width: 1024px) {
+    & span {
+      padding: 16px;
+    }
+  }
+
   @media (max-width: 768px) {
     position: fixed;
     bottom: 0;
