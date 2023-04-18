@@ -4,45 +4,44 @@ import { useEffect, useState } from "react";
 import { Container, Main, Title } from "@/components/SharedStyles";
 import Image from "next/image";
 import {
-  ContentContainer,
   ReturnLink,
-  ImgContainer,
-  DateContainer,
-  DescContainer,
-  InformationsContainer,
-  HoursContainer,
-  FlexContainer,
   PriceContainer,
   ContainerFlex,
+  ReservationContainer,
+  LegalContainer,
+  LeftSide,
 } from "@/components/event/styles";
-import { format } from "date-fns";
-import { EventItem } from "../interfaces/Event";
+import { BookingUser, EventItem } from "../interfaces/Event";
+import Booking from "@/components/event/Booking";
+import Description from "@/components/event/Description";
+import Price from "@/components/event/Price";
 
 const Event = () => {
   const router = useRouter();
   const { id } = router.query;
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState<EventItem>({} as EventItem);
+  const [bookings, setBookings] = useState<BookingUser[]>([]);
 
   useEffect(() => {
-    if (id) {
-      axios.get(`http://localhost:3001/events/${id}`).then((res) => {
-        setData(res.data);
-        setIsLoading(false);
-      });
-    }
+    const urls = [
+      `http://localhost:3001/events/${id}`,
+      "http://localhost:3001/bookings",
+    ];
+
+    Promise.all(urls.map((url) => axios.get(url)))
+      .then(([eventData, bookingsDate]) => {
+        setData(eventData.data);
+        setBookings(bookingsDate.data);
+      })
+      .then(() => setIsLoading(false))
+      .catch((err) => console.log(err));
   }, [id]);
 
   if (isLoading) return <p>Chargement ...</p>;
 
   console.log("data: ", data);
-
-  const dateMonth = format(new Date(data.startAt), "LLL").substring(0, 3);
-  const dateNumber = format(new Date(data.startAt), "i");
-  const hours = `${format(new Date(data.startAt), "k:mm")} - ${format(
-    new Date(data.endAt),
-    "k:mm"
-  )}`;
+  console.log("bookings: ", bookings);
 
   return (
     <Main>
@@ -53,38 +52,12 @@ const Event = () => {
           Événements
         </ReturnLink>
         <ContainerFlex>
-          <ContentContainer>
-            <ImgContainer>
-              <Image src={data.image.url} alt="presentation image" fill />
-            </ImgContainer>
-            <InformationsContainer>
-              <DateContainer>
-                <p>{dateMonth}</p>
-                <p>{dateNumber}</p>
-              </DateContainer>
-              <DescContainer>
-                <h1>{data.title}</h1>
-                <HoursContainer>{hours}</HoursContainer>
-                <FlexContainer>
-                  <div>
-                    <h4>Places restantes</h4>
-                    <span>{data.remainingTickets}</span>
-                  </div>
-                  <div>
-                    <h4>Date de clôture</h4>
-                    <span>{format(new Date(data.endAt), "i MMMM yyyy")}</span>
-                  </div>
-                </FlexContainer>
-                {/* TODO: Find a solution for rich text */}
-                <p>{data.description}</p>
-              </DescContainer>
-            </InformationsContainer>
-          </ContentContainer>
-          <PriceContainer>
-            <div>
-              <div>{data.price === "0.0" ? "Gratuit" : data.price}</div>
-            </div>
-          </PriceContainer>
+          <LeftSide>
+            <Description data={data} />
+            <Booking bookings={bookings} />
+          </LeftSide>
+
+          <Price data={data} />
         </ContainerFlex>
       </Container>
     </Main>

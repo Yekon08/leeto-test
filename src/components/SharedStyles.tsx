@@ -1,4 +1,4 @@
-import { Containerprops } from "@/interfaces/Styles";
+import { Booking, Containerprops } from "@/interfaces/Styles";
 import styled from "styled-components";
 
 const Main = styled.main`
@@ -31,4 +31,21 @@ const SectionTitle = styled.p`
   text-align: center;
 `;
 
-export { Main, Title, Container, SectionTitle };
+const BookingItemShared = styled.div<Booking>`
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${(props) => (props.color ? props.color : "white")};
+  color: white;
+  font-size: 14px;
+
+  & img {
+    border-radius: 9999px;
+  }
+`;
+
+export { Main, Title, Container, SectionTitle, BookingItemShared };

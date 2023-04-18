@@ -18,13 +18,29 @@ const ContainerFlex = styled.div`
   margin-top: 24px;
 `;
 
-const ContentContainer = styled.div`
+const LeftSide = styled.div`
   width: 66.66%;
+  height: auto;
+
+  & h3 {
+    font-weight: 600;
+    font-size: 16px;
+    color: black;
+    margin-bottom: 16px;
+  }
+`;
+
+const ContentContainer = styled.div`
+  width: 100%;
   height: auto;
   background: #ffffff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.03);
   border-radius: 12px;
   padding: 16px 24px;
+
+  &:nth-child(1) {
+    margin-bottom: 24px;
+  }
 `;
 
 const ImgContainer = styled.div`
@@ -118,9 +134,104 @@ const FlexContainer = styled.div`
 const PriceContainer = styled.div`
   width: 100%;
   height: auto;
-  background-color: red;
   margin-left: 18px;
   flex: 1;
+`;
+
+const ReservationContainer = styled.div`
+  background: #ffffff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.03);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+
+  & span {
+    width: 100%;
+    background: #f8fdd9;
+    border-radius: 8px;
+    padding: 16px 0;
+    text-align: center;
+    display: block;
+    font-weight: 600;
+    font-size: 20px;
+    color: #567f0a;
+    margin-bottom: 16px;
+  }
+
+  & button {
+    width: 100%;
+    background: #567f0a;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    border: none;
+    display: block;
+    padding: 8px 0;
+    color: #ffffff;
+    font-size: 16px;
+  }
+`;
+
+const LegalContainer = styled.div`
+  background: #ffffff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.03);
+  border-radius: 12px;
+  padding: 16px;
+  color: #8c8c8c;
+  font-size: 14px;
+
+  & h6 {
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  & span {
+    font-weight: bold;
+  }
+`;
+
+const TableHeader = styled.div`
+  background: #f6f8fa;
+  border-radius: 8px;
+  padding: 8px 16px 8px 72px;
+  color: #8295a9;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 38px;
+  margin-bottom: 18px;
+`;
+
+const BookingItems = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  & span {
+    font-size: 14px;
+    text-align: right;
+    color: #006d75;
+    margin-right: 4px;
+  }
+`;
+
+const BookingNames = styled.div`
+  display: flex;
+  align-items: center;
+
+  & p {
+    margin-left: 16px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #595959;
+  }
+`;
+
+const BookingContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 38px;
 `;
 
 export {
@@ -134,4 +245,11 @@ export {
   FlexContainer,
   PriceContainer,
   ContainerFlex,
+  ReservationContainer,
+  LegalContainer,
+  LeftSide,
+  TableHeader,
+  BookingItems,
+  BookingNames,
+  BookingContainer,
 };

@@ -5,6 +5,7 @@ import {
   SwitchBtnProps,
 } from "@/interfaces/Styles";
 import styled from "styled-components";
+import { BookingItemShared } from "../SharedStyles";
 
 const ListContainer = styled.div`
   display: flex;
@@ -73,17 +74,9 @@ const BookingItems = styled.div`
   margin-top: 8px;
 `;
 
-const BookingItem = styled.div<Booking>`
-  width: 40px;
-  height: 40px;
-  border-radius: 9999px;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const BookingItem = styled(BookingItemShared)<Booking>`
   background-color: ${(props) => (props.color ? props.color : "white")};
   color: ${(props) => (props.counter ? "#595959" : "white")};
-  font-size: 14px;
   margin-left: -16px;
 
   border: ${(props) =>
@@ -91,10 +84,6 @@ const BookingItem = styled.div<Booking>`
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.03);
   box-shadow: ${(props) =>
     props.counter ? "0px 2px 4px rgba(0, 0, 0, 0.03)" : "none"};
-
-  & img {
-    border-radius: 9999px;
-  }
 
   &:nth-child(1) {
     margin-left: 0;
