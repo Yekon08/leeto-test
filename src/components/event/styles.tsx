@@ -346,6 +346,13 @@ const ModalContainer = styled.div`
     font-size: 14px;
     color: #8c8c8c;
   }
+
+  @media (max-width: 768px) {
+    input {
+      margin-left: 0;
+      margin-top: 8px;
+    }
+  }
 `;
 
 export {
