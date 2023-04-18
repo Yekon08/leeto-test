@@ -9,13 +9,16 @@ import ReactModal from "react-modal";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { User } from "@/interfaces/User";
+import { toast } from "react-toastify";
+import Image from "next/image";
 
 interface Props {
   data: EventItem;
   bookings: BookingUser[];
+  handleGetBookings: () => void;
 }
 
-const Price = ({ data, bookings }: Props) => {
+const Price = ({ data, bookings, handleGetBookings }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState<User>({} as User);
   const [ticketNumber, setTicketNumber] = useState<number>(1);
@@ -26,8 +29,9 @@ const Price = ({ data, bookings }: Props) => {
     });
   }, []);
 
+  // ADD user doesnt work
   const bookingFind = bookings.find(
-    (booking) => booking.userId === 1
+    (booking) => booking.userId === 9
     // (booking) => booking.userId === currentUser.id
   );
 
@@ -41,34 +45,62 @@ const Price = ({ data, bookings }: Props) => {
 
   const handleAddReservation = () => {
     const randomId = Math.floor(Math.random() * 9999);
-    axios.post(`http://localhost:3001/bookings/${randomId}`, {
-      user: {
-        avatar: { ...currentUser.avatar },
-        fistName: currentUser.firstName,
-        lastName: currentUser.lastName,
-        id: currentUser.id,
-        color: currentUser.color,
-      },
-      numberOfTickets: ticketNumber,
-      id: randomId, //Todo: handle uuid
-      userId: currentUser.id,
-    });
+    axios
+      .post(`http://localhost:3001/bookings/${randomId}`, {
+        id: randomId, //Todo: handle uuid
+        user: {
+          id: currentUser.id,
+          fistName: currentUser.firstName,
+          lastName: currentUser.lastName,
+          color: currentUser.color,
+          avatar: { url: currentUser.avatar.url },
+        },
+        numberOfTickets: ticketNumber,
+        userId: currentUser.id,
+      })
+      .then(() => {
+        toast.success("Réservation ajoutée !");
+        handleGetBookings();
+        setIsOpen(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("error...");
+      });
   };
 
   const handleDelete = (id: number) => {
-    axios.delete(`http://localhost:3001/bookings/${id}`);
+    axios
+      .delete(`http://localhost:3001/bookings/${id}`)
+      .then(() => {
+        toast.success("Réservation supprimée !");
+        handleGetBookings();
+        setIsOpen(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("error...");
+      });
   };
 
   const handlePatch = (id: number, numberTickets: number) => {
-    axios.patch(`http://localhost:3001/bookings/${id}`, {
-      numberOfTickets: numberTickets,
-    });
+    axios
+      .patch(`http://localhost:3001/bookings/${id}`, {
+        numberOfTickets: numberTickets,
+      })
+      .then(() => {
+        toast.success("Réservation modifiée !");
+        handleGetBookings();
+        setIsOpen(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("error...");
+      });
   };
 
   const handlePriceText = data.price === "0.0" ? "Gratuit" : data.price;
 
-  console.log("user : ", currentUser);
-  console.log("test: ", bookingFind);
   return (
     <>
       <PriceContainer>
@@ -99,6 +131,9 @@ const Price = ({ data, bookings }: Props) => {
         )}
         className="modal"
       >
+        <span onClick={() => setIsOpen(false)}>
+          <Image src="/closeIcon.svg" alt="closeIcon" width={15} height={15} />
+        </span>
         <h3>Réservation</h3>
         <div>
           <label>nombre de tickets :</label>
@@ -108,7 +143,9 @@ const Price = ({ data, bookings }: Props) => {
             onChange={(e) => setTicketNumber(Number(e.target.value))}
           />
         </div>
-        <button onClick={handleAddReservation}>Modifier ma réservation</button>
+        {!bookingFind && (
+          <button onClick={handleAddReservation}>Ajouter ma réservation</button>
+        )}
         {bookingFind && (
           <button onClick={() => handleDelete(bookingFind.id)}>
             supprimer ma réservation

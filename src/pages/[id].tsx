@@ -8,27 +8,45 @@ import { BookingUser, EventItem } from "../interfaces/Event";
 import Booking from "@/components/event/Booking";
 import Description from "@/components/event/Description";
 import Price from "@/components/event/Price";
+import { toast } from "react-toastify";
 
 const Event = () => {
   const router = useRouter();
   const { id } = router.query;
   const [isLoading, setIsLoading] = useState(true);
+  const [isBookingsLoading, setIsBookingsLoading] = useState(true);
   const [data, setData] = useState<EventItem>({} as EventItem);
   const [bookings, setBookings] = useState<BookingUser[]>([]);
 
-  useEffect(() => {
-    const urls = [
-      `http://localhost:3001/events/${id}`,
-      "http://localhost:3001/bookings",
-    ];
-
-    Promise.all(urls.map((url) => axios.get(url)))
-      .then(([eventData, bookingsDate]) => {
-        setData(eventData.data);
-        setBookings(bookingsDate.data);
+  const handleGetBookings = () => {
+    setIsBookingsLoading(true);
+    axios
+      .get(`http://localhost:3001/bookings`)
+      .then((res) => {
+        setBookings(res.data);
       })
-      .then(() => setIsLoading(false))
-      .catch((err) => console.log(err));
+      .then(() => setIsBookingsLoading(false))
+      .catch((err) => {
+        console.log(err);
+        toast.error("error...");
+      });
+  };
+
+  useEffect(() => {
+    if (id) {
+      axios
+        .get(`http://localhost:3001/events/${id}`)
+        .then((res) => {
+          setData(res.data);
+        })
+        .then(() => setIsLoading(false))
+        .catch((err) => {
+          console.log(err);
+          toast.error("error...");
+        });
+
+      handleGetBookings();
+    }
   }, [id]);
 
   if (isLoading) return <p>Chargement ...</p>;
@@ -47,10 +65,16 @@ const Event = () => {
         <ContainerFlex>
           <LeftSide>
             <Description data={data} />
-            <Booking bookings={bookings} />
+            {bookings && <Booking bookings={bookings} />}
           </LeftSide>
 
-          <Price data={data} bookings={bookings} />
+          {bookings && (
+            <Price
+              data={data}
+              bookings={bookings}
+              handleGetBookings={handleGetBookings}
+            />
+          )}
         </ContainerFlex>
       </Container>
     </Main>

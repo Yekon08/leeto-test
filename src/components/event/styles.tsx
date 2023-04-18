@@ -258,6 +258,13 @@ const ModalContainer = styled.div`
     border: none;
     border: 1px solid #595959;
   }
+
+  & span {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+  }
 `;
 
 export {
