@@ -12,6 +12,7 @@ import axios from "axios";
 import { User } from "@/interfaces/User";
 import { toast } from "react-toastify";
 import Image from "next/image";
+import LegalText from "./LegalText";
 
 interface Props {
   data: EventItem;
@@ -119,14 +120,7 @@ const Price = ({ data, bookings, handleGetBookings }: Props) => {
           </ButtonPrice>
         </ReservationContainer>
 
-        <LegalContainer>
-          <h6>Politique d’annulation et de remboursement</h6>
-          <p>
-            Les annulations et remboursements peuvent s’effectuer jusqu’à la
-            date de clôture des inscriptions soit jusqu’au{" "}
-            <span>2 janvier 2021</span>.
-          </p>
-        </LegalContainer>
+        <LegalText />
       </PriceContainer>
 
       <ReactModal

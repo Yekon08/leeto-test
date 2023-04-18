@@ -9,6 +9,7 @@ import Booking from "@/components/event/Booking";
 import Description from "@/components/event/Description";
 import Price from "@/components/event/Price";
 import { toast } from "react-toastify";
+import LegalText from "@/components/event/LegalText";
 
 const Event = () => {
   const router = useRouter();
@@ -53,7 +54,7 @@ const Event = () => {
 
   return (
     <Main>
-      <Title>Événements</Title>
+      <Title event>Événements</Title>
       <Container padding>
         <ReturnLink href="/">
           <Image src={"/arrow.svg"} alt="arrow icon" width={14} height={14} />
@@ -62,6 +63,7 @@ const Event = () => {
         <ContainerFlex>
           <LeftSide>
             <Description data={data} />
+            <LegalText mobile />
             {bookings && <Booking bookings={bookings} />}
           </LeftSide>
 

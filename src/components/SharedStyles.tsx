@@ -1,4 +1,4 @@
-import { Booking, Containerprops } from "@/interfaces/Styles";
+import { Booking, Containerprops, TitleProps } from "@/interfaces/Styles";
 import styled from "styled-components";
 
 const Main = styled.main`
@@ -11,7 +11,7 @@ const Main = styled.main`
   }
 `;
 
-const Title = styled.h1`
+const Title = styled.h1<TitleProps>`
   color: rgba(0, 0, 0, 0.85);
   font-weight: 600;
   font-size: 30px;
@@ -20,6 +20,8 @@ const Title = styled.h1`
   @media (max-width: 768px) {
     margin-left: 24px;
     margin-top: 16px;
+
+    ${(props) => props.event && "display: none"}
   }
 `;
 
@@ -29,10 +31,11 @@ const Container = styled.div<Containerprops>`
   background: #fafafb;
   border-radius: 12px;
 
-  ${(props) => props.padding && "padding: 16px 32px"}
+  ${(props) => props.padding && "padding: 16px 32px"};
 
   @media (max-width: 768px) {
     border-radius: 0;
+    padding: ${(props) => (props.padding ? "16px 16px 150px 16px" : "16px")};
   }
 `;
 

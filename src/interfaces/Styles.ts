@@ -24,3 +24,11 @@ export interface ButtonPriceProps {
   modify?: boolean;
   padding?: boolean;
 }
+
+export interface TitleProps {
+  event?: boolean;
+}
+
+export interface LegalTextProps {
+  mobile?: boolean;
+}

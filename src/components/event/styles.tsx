@@ -1,4 +1,4 @@
-import { ButtonPriceProps } from "@/interfaces/Styles";
+import { ButtonPriceProps, LegalTextProps } from "@/interfaces/Styles";
 import Link from "next/link";
 import styled from "styled-components";
 
@@ -12,11 +12,20 @@ const ReturnLink = styled(Link)`
   & img {
     margin-right: 8px;
   }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const ContainerFlex = styled.div`
   display: flex;
   margin-top: 24px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    margin-top: 0;
+  }
 `;
 
 const LeftSide = styled.div`
@@ -28,6 +37,10 @@ const LeftSide = styled.div`
     font-size: 16px;
     color: black;
     margin-bottom: 16px;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
   }
 `;
 
@@ -42,6 +55,10 @@ const ContentContainer = styled.div`
   &:nth-child(1) {
     margin-bottom: 24px;
   }
+
+  @media (max-width: 768px) {
+    padding: 16px;
+  }
 `;
 
 const ImgContainer = styled.div`
@@ -50,6 +67,10 @@ const ImgContainer = styled.div`
   height: 208px;
   & img {
     border-radius: 8px;
+  }
+
+  @media (max-width: 768px) {
+    height: 96px;
   }
 `;
 
@@ -80,6 +101,10 @@ const DateContainer = styled.div`
 
 const InformationsContainer = styled.div`
   display: flex;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const DescContainer = styled.div`
@@ -113,6 +138,11 @@ const DescContainer = styled.div`
     line-height: 30px;
     color: #8c8c8c;
   }
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+    padding: 16px;
+  }
 `;
 
 const HoursContainer = styled.div`
@@ -130,6 +160,11 @@ const FlexContainer = styled.div`
   display: flex;
   gap: 24px;
   margin-bottom: 16px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 16px;
+  }
 `;
 
 const PriceContainer = styled.div`
@@ -158,6 +193,14 @@ const ReservationContainer = styled.div`
     color: #567f0a;
     margin-bottom: 16px;
   }
+
+  @media (max-width: 768px) {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin-bottom: 0;
+  }
 `;
 
 const ButtonPrice = styled.button<ButtonPriceProps>`
@@ -179,7 +222,7 @@ const ButtonPrice = styled.button<ButtonPriceProps>`
   ${(props) => props.padding && "padding: 8px 12px"}
 `;
 
-const LegalContainer = styled.div`
+const LegalContainer = styled.div<LegalTextProps>`
   background: #ffffff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.03);
   border-radius: 12px;
@@ -195,6 +238,13 @@ const LegalContainer = styled.div`
   & span {
     font-weight: bold;
   }
+
+  ${(props) => props.mobile && "display: none"};
+
+  @media (max-width: 768px) {
+    display: ${(props) => (!props.mobile ? "none" : "block")};
+    margin-bottom: 24px;
+  }
 `;
 
 const TableHeader = styled.div`
@@ -209,6 +259,10 @@ const TableHeader = styled.div`
   align-items: center;
   min-height: 38px;
   margin-bottom: 18px;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const BookingItems = styled.div`
