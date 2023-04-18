@@ -15,7 +15,7 @@ const ListContainer = styled.div`
   gap: 16px;
   padding: 24px 128px 54px 128px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1280px) {
     padding: 16px 24px 24px 24px;
   }
 `;
@@ -38,9 +38,13 @@ const CardContainer = styled.a<ActiveProps>`
   justify-content: space-between;
   pointer-events: ${(props) => (props.active === "past" ? "none" : "auto")};
 
+  @media (max-width: 1280px) {
+    height: auto;
+    /* flex-wrap: wrap; */
+  }
+
   @media (max-width: 768px) {
     flex-direction: column;
-    height: auto;
   }
 `;
 
@@ -85,8 +89,17 @@ const DescContainer = styled.div`
     color: #079cee;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1280px) {
+    & h3 {
+      margin-right: 12px;
+    }
+  }
+
+  @media (max-width: 1024px) {
     width: 100%;
+  }
+
+  @media (max-width: 768px) {
     margin: 16px 0;
   }
 `;
@@ -130,6 +143,10 @@ const AvailabilityContainer = styled.div`
   padding-bottom: 12px;
   margin-left: 60px;
 
+  @media (max-width: 1280px) {
+    margin-left: 12px;
+  }
+
   @media (max-width: 768px) {
     align-items: baseline;
   }
@@ -169,13 +186,17 @@ const PriceContainer = styled.div<ActiveProps>`
   border-radius: 8px;
   transition: all 0.3s ease-in-out;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1280px) {
     padding: 16px 0;
     text-align: center;
     justify-content: center;
+    margin-left: 12px;
+    background: ${(props) => (props.active === "past" ? "#FAFAFA" : "#fcffe6")};
+  }
+
+  @media (max-width: 768px) {
     width: 100%;
     margin-top: 16px;
-    background: ${(props) => (props.active === "past" ? "#FAFAFA" : "#fcffe6")};
   }
 `;
 

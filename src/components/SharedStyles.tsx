@@ -39,7 +39,6 @@ const Container = styled.div<Containerprops>`
 const SectionTitle = styled.p`
   font-weight: 600;
   font-size: 14px;
-  line-height: 22px;
   color: #8c8c8c;
   text-align: center;
 
