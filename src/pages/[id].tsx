@@ -11,7 +11,7 @@ import Price from "@/components/event/Price";
 import { toast } from "react-toastify";
 import LegalText from "@/components/event/LegalText";
 
-const Event = () => {
+const EventDetails = () => {
   const router = useRouter();
   const { id } = router.query;
   const [isLoading, setIsLoading] = useState(true);
@@ -80,4 +80,4 @@ const Event = () => {
   );
 };
 
-export default Event;
+export default EventDetails;

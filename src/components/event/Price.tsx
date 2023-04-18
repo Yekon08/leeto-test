@@ -126,6 +126,7 @@ const Price = ({ data, bookings, handleGetBookings }: Props) => {
       <ReactModal
         isOpen={isOpen}
         onRequestClose={() => setIsOpen(false)}
+        appElement={document.getElementById("__next") || undefined}
         contentElement={(props, children) => (
           <ModalContainer {...props}>{children}</ModalContainer>
         )}
