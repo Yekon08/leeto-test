@@ -68,7 +68,7 @@ const DateContainer = styled.div`
   flex-direction: column;
   margin-left: 16px;
   margin-top: -46px;
-  z-index: 999;
+  z-index: 50;
   position: relative;
 
   & p:nth-last-child(1) {
@@ -234,6 +234,32 @@ const BookingContainer = styled.div`
   gap: 38px;
 `;
 
+const ModalContainer = styled.div`
+  background-color: white;
+  width: auto;
+  height: auto;
+  padding: 32px;
+  display: inline-flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.09);
+  border-radius: 12px;
+  flex-direction: column;
+  gap: 12px;
+
+  & input {
+    margin-left: 8px;
+    padding: 8px 12px;
+    display: inline;
+    max-width: 60px;
+    border-radius: 8px;
+    border: none;
+    border: 1px solid #595959;
+  }
+`;
+
 export {
   ReturnLink,
   ContentContainer,
@@ -252,4 +278,5 @@ export {
   BookingItems,
   BookingNames,
   BookingContainer,
+  ModalContainer,
 };

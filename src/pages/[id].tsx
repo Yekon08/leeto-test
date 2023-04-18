@@ -3,14 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Container, Main, Title } from "@/components/SharedStyles";
 import Image from "next/image";
-import {
-  ReturnLink,
-  PriceContainer,
-  ContainerFlex,
-  ReservationContainer,
-  LegalContainer,
-  LeftSide,
-} from "@/components/event/styles";
+import { ReturnLink, ContainerFlex, LeftSide } from "@/components/event/styles";
 import { BookingUser, EventItem } from "../interfaces/Event";
 import Booking from "@/components/event/Booking";
 import Description from "@/components/event/Description";
@@ -57,7 +50,7 @@ const Event = () => {
             <Booking bookings={bookings} />
           </LeftSide>
 
-          <Price data={data} />
+          <Price data={data} bookings={bookings} />
         </ContainerFlex>
       </Container>
     </Main>
