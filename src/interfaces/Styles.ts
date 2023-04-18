@@ -22,4 +22,5 @@ export interface Containerprops {
 
 export interface ButtonPriceProps {
   modify?: boolean;
+  padding?: boolean;
 }

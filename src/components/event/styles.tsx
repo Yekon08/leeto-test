@@ -174,7 +174,9 @@ const ButtonPrice = styled.button<ButtonPriceProps>`
   ${(props) =>
     props.modify
       ? "border: 1px solid #F5222D"
-      : "box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.08)"}
+      : "box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.08)"};
+
+  ${(props) => props.padding && "padding: 8px 12px"}
 `;
 
 const LegalContainer = styled.div`
@@ -257,12 +259,14 @@ const ModalContainer = styled.div`
 
   & input {
     margin-left: 8px;
-    padding: 8px 12px;
+    padding: 8px;
     display: inline;
     max-width: 60px;
     border-radius: 8px;
     border: none;
-    border: 1px solid #595959;
+    font-size: 16px;
+    color: #262626;
+    border: 1px solid #8c8c8c;
   }
 
   & span {
@@ -270,6 +274,17 @@ const ModalContainer = styled.div`
     top: 20px;
     right: 20px;
     cursor: pointer;
+  }
+
+  & h3 {
+    font-weight: 600;
+    font-size: 20px;
+    color: #262626;
+  }
+
+  & label {
+    font-size: 14px;
+    color: #8c8c8c;
   }
 `;
 
